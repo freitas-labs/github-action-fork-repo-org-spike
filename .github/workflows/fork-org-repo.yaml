@@ -14,7 +14,7 @@ jobs:
       - name: Fork repository
         uses: actions/github-script@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           script: |
             const owner = 'freitas-labs';
             const repo = 'svelte-spa-sveltekit-ts-css-spike';
@@ -25,7 +25,7 @@ jobs:
                 const response = await github.repos.createFork({
                   owner: owner,
                   repo: repo,
-                  organization: 'expensive-garbage'
+                  organization: org
                 });
                 console.log(`Repository ${response.data.full_name} forked to organization ${org}`);
               } catch (error) {
