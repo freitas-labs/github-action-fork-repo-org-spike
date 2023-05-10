@@ -14,16 +14,15 @@ jobs:
       - name: Fork repository
         uses: actions/github-script@v4
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const token = process.env.GITHUB_TOKEN;
-            const octokit = github.getOctokit(token);
             const owner = 'freitas-labs';
             const repo = 'svelte-spa-sveltekit-ts-css-spike';
-            const org = 'expensive-garbage'; // Replace with the target organization name
+            const org = 'expensive-garbage';
 
             async function forkRepo() {
               try {
-                const response = await octokit.repos.createFork({
+                const response = await github.repos.createFork({
                   owner: owner,
                   repo: repo,
                   organization: 'expensive-garbage'
